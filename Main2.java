@@ -120,7 +120,7 @@ class AgroMonitoringSystem {
             boolean success = user.getPasswordHash().equals(new User("", password, "").getPasswordHash());
             long responseTime = System.currentTimeMillis() - startTime;
             if (responseTime > 2000) {
-                System.out.println("[Attention] Response time exceeded: " + responseTime + " мс");
+                System.out.println("[Attention] Response time exceeded: " + responseTime + " ms");
             }
             return success;
         }

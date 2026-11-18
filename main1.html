@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro-Monitoring System - Requirements</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-emerald-700">🌱 Agro-Monitoring System</h1>
+            <p class="text-slate-500 mt-1">Task 1.1: Classification of Requirements</p>
+        </header>
+
+        <!-- Навигация по вкладкам -->
+        <div class="flex justify-center gap-4 mb-6">
+            <button onclick="switchTab('func')" id="btn-func" class="px-6 py-2 rounded-xl font-semibold bg-emerald-600 text-white transition shadow-sm">
+                Functional Requirements
+            </button>
+            <button onclick="switchTab('non-func')" id="btn-non-func" class="px-6 py-2 rounded-xl font-semibold bg-white text-slate-600 border border-slate-200 transition shadow-sm">
+                Non-Functional Requirements
+            </button>
+        </div>
+
+        <!-- Функциональные требования -->
+        <div id="tab-func" class="space-y-4">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">🔐</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">1. User Authentication</h3>
+                    <p class="text-sm text-slate-500 mt-1">The user must be able to log into the system using a username and password.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">📊</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">2. Sensor Data Display</h3>
+                    <p class="text-sm text-slate-500 mt-1">The system must display temperature and humidity data collected from field sensors.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">👥</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">3. User Management</h3>
+                    <p class="text-sm text-slate-500 mt-1">The administrator must be able to add new users to the system.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">📑</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">4. Reports Generation</h3>
+                    <p class="text-sm text-slate-500 mt-1">The system must be able to generate and download reports for a selected period.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нефункциональные требования -->
+        <div id="tab-non-func" class="space-y-4 hidden">
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">⚡</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">1. Performance</h3>
+                    <p class="text-sm text-slate-500 mt-1">The response time for all API requests must not exceed 2 seconds.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">🛡️</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">2. Security</h3>
+                    <p class="text-sm text-slate-500 mt-1">Passwords in the database must be stored in a hashed (encrypted) format.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">📱</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">3. Usability</h3>
+                    <p class="text-sm text-slate-500 mt-1">The interface must be responsive, adapting to both mobile and desktop screens.</p>
+                </div>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                <span class="text-2xl">⏱️</span>
+                <div>
+                    <h3 class="font-bold text-slate-700">4. Availability</h3>
+                    <p class="text-sm text-slate-500 mt-1">The system must maintain an uptime of 99.5%.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(type) {
+            const funcTab = document.getElementById('tab-func');
+            const nonFuncTab = document.getElementById('tab-non-func');
+            const btnFunc = document.getElementById('btn-func');
+            const btnNonFunc = document.getElementById('btn-non-func');
+
+            if (type === 'func') {
+                funcTab.classList.remove('hidden');
+                nonFuncTab.classList.add('hidden');
+                btnFunc.className = "px-6 py-2 rounded-xl font-semibold bg-emerald-600 text-white transition shadow-sm";
+                btnNonFunc.className = "px-6 py-2 rounded-xl font-semibold bg-white text-slate-600 border border-slate-200 transition shadow-sm";
+            } else {
+                funcTab.classList.add('hidden');
+                nonFuncTab.classList.remove('hidden');
+                btnNonFunc.className = "px-6 py-2 rounded-xl font-semibold bg-emerald-600 text-white transition shadow-sm";
+                btnFunc.className = "px-6 py-2 rounded-xl font-semibold bg-white text-slate-600 border border-slate-200 transition shadow-sm";
+            }
+        }
+    </script>
+</body>
+</html>
