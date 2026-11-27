@@ -1,23 +1,19 @@
-# Smart Agro Monitoring System
+# Agro Management System
 
-## Module Architecture
+## Architecture and Module Matrix
 
-The agro-management-system is divided into four main modules:
-
-* Model — data structures (`SensorData`, `User`) and their fields.
-* Repository — a data access interface with two interchangeable implementations: In-Memory (for testing) and PostgreSQL (for the production environment).
-* Service — business logic, processing of sensor readings, access control, and report generation.
-* UI — handling user requests and displaying results.
-
-## Module Interaction Matrix
-
-| Module | Primary Function | Input Data | Output Result | Dependencies |
+| Module (Java Package) | Primary Function | Input Data | Output Result | Dependencies |
 |---|---|---|---|---|
-| Model | Defining data structures (`SensorData`, User`) | Raw values ​​(`sensorId, temperature, humidity, user data) | Data objects | None |
-| Repository | Reading, writing, and searching for data via an interface and its implementations | Data objects or search parameters/time periods | List of records or status (`true`/`false`) | Model |
-| Service | Processing readings, performing calculations, conducting checks, and generating reports | Sensor readings, time intervals, user requests | Reports, alerts, or operation results | Model, Repository interface |
-| UI | Accepting user actions and displaying outcomes | User input (login/password, field ID, dates) | On-screen text/tables or report files | Service, Model |
+| Model (`com.agro.model`) | Data structure (`SensorReading`) | String id, double temp, double humidity | SensorReading object | None |
+| Repository (`com.agro.repository`) | Data read/write operations (interface and implementations) | SensorReading or String fieldId | List<SensorReading> or boolean | `com.agro.model` |
+| Service (`com.agro.service`) | Validation, standards analysis, reporting | Sensor readings, user requests | Report (`String` / DTO), notification | `model`, `repository` (via interface) |
+| UI (`com.agro.ui`) | Request handling and result display | User input / requests | Console output / response | `service`, `model` |
+
+## SensorService Contract (UI → Service)
+
+- `String analyzeFieldCondition(String fieldId)` — analyzes readings for a specific field and returns a text-based report or the result of the assessment.
+- `boolean registerNewSensorData(String fieldId, double temperature, double humidity)` — validates input parameters and saves the readings via `SensorRepository` (returns `true` on success, `false` if validation or saving fails).
 
 ## Component Diagram
 
-![System Component Diagram](architecture-diagram.png)
+![Component Diagram](docs/architecture-diagram.png)
